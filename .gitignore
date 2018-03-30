@@ -1,0 +1,4 @@
+.idea
+*.n64
+.o
+cmake-build-debug
