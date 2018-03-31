@@ -15,6 +15,9 @@
 cmake_minimum_required(VERSION 3.10)
 project(n64_emu)
 
+find_package(Boost)
+include_directories(${Boost_INCLUDE_DIRS})
+
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(n64emu emulator_main.cpp instruction.hpp binary.cpp cmdline.hpp)

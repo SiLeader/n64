@@ -17,7 +17,7 @@
 #include <string>
 #include <fstream>
 
-#include <endian.h>
+#include <boost/endian/conversion.hpp>
 
 #include "instruction.hpp"
 
@@ -36,7 +36,7 @@ namespace n64 {
         while(!fin.eof()) {
             n64::instruction::instruction ins={};
             fin.read(reinterpret_cast<char*>(&ins), n64::instruction::WIDTH);
-            ins.data=be64toh(ins.data);
+            ins.data=boost::endian::big_to_native(ins.data);
             instructions.emplace_back(ins);
         }
         return instructions;
@@ -51,7 +51,7 @@ namespace n64 {
         std::fstream fout(file, std::ios::out | std::ios::binary);
 
         for(const auto& ins : instructions) {
-            std::uint64_t be=htobe64(ins.data);
+            std::uint64_t be=boost::endian::native_to_big(ins.data);
             fout.write(reinterpret_cast<const char*>(&be), n64::instruction::WIDTH);
         }
     }
