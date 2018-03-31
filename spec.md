@@ -177,7 +177,7 @@ it has no operand.
 
 #### pseudo-instructions (expand other instruction)
 | instruction | type | expanded | behavior |
-|:---:|:----:|:---:|:-------------:|:-----|
+|:----:|:---:|:-------------:|:-----|
 | mov | B | add dest, src, r0 | copy to dest from src |
 | nop | NO | xchg r0, r0 | do nothing |
 | raise | NO | cmp r0, r0 | set e-bit of flags |
